@@ -3,6 +3,34 @@
 
 {% block content %}
   <h1>
-  Topic List
+    Topic List
   </h1>
+
+  {% if topic_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for topic in topic_list %}
+        <tr>
+          <td>
+            {{ topic.id }}
+          </td>
+          <td>
+            {{ topic.name }}
+          </td>
+          <td>
+            {{ topic.country }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+    <p>There are no topic in the base.</p>
+  {% endif %}
 {% endblock %}
