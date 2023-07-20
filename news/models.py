@@ -13,7 +13,7 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    year_of_experience = models.IntegerField()
+    year_of_experience = models.IntegerField(null=True)
 
     class Meta:
         verbose_name = "redactor"
