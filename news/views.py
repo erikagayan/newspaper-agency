@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View, generic
 
+from news.forms import TopicSearchForm
 from news.models import Topic, Redactor, Newspaper
 
 
@@ -28,17 +29,27 @@ def index(request):
     return render(request, "news/index.html", context=context)
 
 
-# class TopicListView(LoginRequiredMixin, generic.ListView):
-#     model = Topic
-#     context_object_name = "topic_list"
-#     template_name = "news/topic_list.html"
-#     paginate_by = 5
-#
-#     def get_context_data(self, *, object_list=None, **kwargs):
-#         context = super(ManufacturerListView, self).get_context_data(**kwargs)
-#
-#         name = self.request.GET.get("name", "")
-#
-#         context["search_form"] = ManufacturerSearchForm(initial={"name": name})
-#
-#         return context
+class TopicListView(LoginRequiredMixin, generic.ListView):
+    model = Topic
+    context_object_name = "topic_list"
+    template_name = "news/topic_list.html"
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TopicListView, self).get_context_data(**kwargs)
+
+        name = self.request.GET.get("name", "")
+
+        context["search_form"] = TopicSearchForm(initial={"name": name})
+
+        return context
+
+    def get_queryset(self):
+        queryset = Topic.objects.all()
+
+        form = TopicSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+
+        return queryset
