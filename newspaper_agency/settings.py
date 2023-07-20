@@ -78,6 +78,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "news.Redactor"
+
 LOGIN_REDIRECT_URL = "/"
 
 LANGUAGE_CODE = "en-us"
