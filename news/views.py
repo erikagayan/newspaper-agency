@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import View, generic
 
 from news.forms import TopicSearchForm, NewspaperSearchForm
@@ -54,6 +55,12 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
             return queryset.filter(name__icontains=form.cleaned_data["name"])
 
         return queryset
+
+
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("news:topic-list")
 
 
 class RedactorListView(LoginRequiredMixin, generic.ListView):
