@@ -53,3 +53,8 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
             return queryset.filter(name__icontains=form.cleaned_data["name"])
 
         return queryset
+
+
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    model = Redactor
+    paginate_by = 5
