@@ -1,7 +1,8 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from news.models import Redactor
+from news.models import Redactor, Newspaper
 
 
 class TopicSearchForm(forms.Form):
@@ -35,3 +36,15 @@ class NewspaperSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by title.."})
     )
+
+
+class NewspaperForm(forms.ModelForm):
+    redactors = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+
+    class Meta:
+        model = Newspaper
+        fields = "__all__"

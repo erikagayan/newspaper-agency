@@ -4,6 +4,9 @@
   <h1>
     {{ newspaper.title }}
   </h1>
+  <a href="{% url 'news:newspaper-update' pk=newspaper.id %}" class="btn btn-secondary link-to-page">
+    Update
+  </a>
   <p>Topic: ({{ newspaper.topic.name }})</p>
 
   <h1>Redactor</h1>
