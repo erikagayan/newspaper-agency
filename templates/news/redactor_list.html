@@ -17,8 +17,8 @@
       </tr>
       {% for redactor in redactor_list %}
         <tr>
-          <td><a href="{% url "news:redactor-detail" pk=redactor.id %} ">{{ redactor.id }}</a></td>
-          <td><a href="{{ redactor.get_absolute_url }}">{{ redactor.username }} {% if user == redactor %} (Me){% endif %}</a>
+          <td>{{ redactor.id }}</td>
+          <td><a href="{% url "news:redactor-detail" pk=redactor.id %}">{{ redactor.username }} {% if user == redactor %} (Me){% endif %}</a>
           </td>
           <td>{{ redactor.first_name }}</td>
           <td>{{ redactor.last_name }}</td>
