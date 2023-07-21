@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Newspaper list
+  </h1>
+
+  {% if newspaper_list %}
+    <ul>
+      {% for newspaper in newspaper_list %}
+        <li>
+          <a href="">{{ newspaper.id }}</a>
+          {{ newspaper.title }} ({{ newspaper.topic.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no newspapers in base</p>
+  {% endif %}
+{% endblock %}

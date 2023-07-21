@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View, generic
 
-from news.forms import TopicSearchForm
+from news.forms import TopicSearchForm, NewspaperSearchForm
 from news.models import Topic, Redactor, Newspaper
 
 
@@ -58,3 +59,27 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5
+
+
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
+    model = Newspaper
+    paginate_by = 10
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(NewspaperListView, self).get_context_data(**kwargs)
+
+        title = self.request.GET.get("title", "")
+
+        context["search_form"] = NewspaperSearchForm(initial={"title": title})
+
+        return context
+
+    def get_queryset(self):
+        queryset = Newspaper.objects.all()
+
+        form = NewspaperSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(title__icontains=form.cleaned_data["title"])
+
+        return queryset
