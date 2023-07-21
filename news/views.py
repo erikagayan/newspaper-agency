@@ -63,6 +63,12 @@ class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("news:topic-list")
 
 
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("news:topic-list")
+
+
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5

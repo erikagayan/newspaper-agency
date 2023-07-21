@@ -27,7 +27,9 @@
             {{ topic.name }}
           </td>
           <td>
-            {{ topic.country }}
+            <a href="{% url 'news:topic-update' pk=topic.id %}">
+              Update
+            </a>
           </td>
         </tr>
       {% endfor %}
