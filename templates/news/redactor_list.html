@@ -4,6 +4,7 @@
 {% block content %}
   <h1>
     Redactor list
+    <a style="float: right" href="{% url 'news:redactor-create' %}">+</a>
   </h1>
 
   {% if redactor_list %}
