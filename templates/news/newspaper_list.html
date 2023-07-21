@@ -7,14 +7,14 @@
   </h1>
 
   {% if newspaper_list %}
-    <ul>
+    <ol>
       {% for newspaper in newspaper_list %}
         <li>
-          <a href="{% url "news:newspaper-detail" pk=newspaper.id %}">{{ newspaper.id }}</a>
-          {{ newspaper.title }} ({{ newspaper.topic.name }})
+          <a href="{% url "news:newspaper-detail" pk=newspaper.id %}">{{ newspaper.title }}</a>
+          ({{ newspaper.topic.name }})
         </li>
       {% endfor %}
-    </ul>
+    </ol>
   {% else %}
     <p>There are no newspapers in base</p>
   {% endif %}
