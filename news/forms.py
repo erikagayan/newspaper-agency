@@ -21,6 +21,13 @@ class RedactorCreationForm(UserCreationForm):
         )
 
 
+class RedactorUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Redactor
+        fields = ["username", "first_name", "last_name",
+                  "email", "password", "is_active", "year_of_experience"]
+
+
 class NewspaperSearchForm(forms.Form):
     title = forms.CharField(
         max_length=255,
