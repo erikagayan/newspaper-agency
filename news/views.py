@@ -88,3 +88,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
             return queryset.filter(title__icontains=form.cleaned_data["title"])
 
         return queryset
+
+
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Newspaper
