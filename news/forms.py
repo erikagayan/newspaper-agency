@@ -47,6 +47,7 @@ class NewspaperSearchForm(forms.Form):
 
 
 class NewspaperForm(forms.ModelForm):
+    published_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     redactors = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,

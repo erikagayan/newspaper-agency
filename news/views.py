@@ -1,4 +1,4 @@
-
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -37,10 +37,7 @@ class UserCreateView(generic.CreateView):
     model = Redactor
     form_class = UserCreateForm
     template_name = "registration/register_user.html"
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        return redirect("news:index")
+    success_url = reverse_lazy("news:index")
 
 
 class TopicListView(LoginRequiredMixin, generic.ListView):

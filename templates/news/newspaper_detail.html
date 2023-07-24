@@ -28,7 +28,7 @@
   <hr>
   <ul>
     {% for redactor in newspaper.redactors.all %}
-      <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }})</li>
+      <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }}; {{ newspaper.published_date }})</li>
     {% endfor %}
   </ul>
 {% endblock %}
