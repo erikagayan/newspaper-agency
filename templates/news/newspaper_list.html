@@ -9,6 +9,11 @@
     </a>
   </h1>
 
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input type="submit" value="Submit" class="btn btn-secondary">
+  </form>
+
   {% if newspaper_list %}
     <ol>
       {% for newspaper in newspaper_list %}

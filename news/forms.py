@@ -22,6 +22,15 @@ class TopicSearchForm(forms.Form):
     )
 
 
+class RedactorSearchForm(forms.Form):
+    year_of_experience = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by year_of_experience.."})
+    )
+
+
 class RedactorCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Redactor

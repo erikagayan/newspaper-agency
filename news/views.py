@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from news.forms import TopicSearchForm, NewspaperSearchForm, RedactorCreationForm, RedactorUpdateForm, NewspaperForm, \
-    UserCreateForm
+    UserCreateForm, RedactorSearchForm
 from news.models import Topic, Redactor, Newspaper
 
 
@@ -86,6 +86,25 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+
+        year_of_experience = self.request.GET.get("year_of_experience", "")
+
+        context["search_form"] = RedactorSearchForm(initial={"year_of_experience": year_of_experience})
+
+        return context
+
+    def get_queryset(self):
+        queryset = Redactor.objects.all()
+
+        form = RedactorSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(year_of_experience__icontains=form.cleaned_data["year_of_experience"])
+
+        return queryset
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):

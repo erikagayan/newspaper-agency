@@ -7,6 +7,11 @@
     <a style="float: right" href="{% url 'news:redactor-create' %}">+</a>
   </h1>
 
+  <form action="" method="get" class="form-inline">
+    {{ search_form|crispy }}
+    <input type="submit" value="Submit" class="btn btn-secondary">
+  </form>
+
   {% if redactor_list %}
     <table class="table">
       <tr>
@@ -19,7 +24,8 @@
       {% for redactor in redactor_list %}
         <tr>
           <td>{{ redactor.id }}</td>
-          <td><a href="{% url "news:redactor-detail" pk=redactor.id %}">{{ redactor.username }} {% if user == redactor %} (Me){% endif %}</a>
+          <td><a href="{% url "news:redactor-detail" pk=redactor.id %}">{{ redactor.username }}
+            {% if user == redactor %} (Me){% endif %}</a>
           </td>
           <td>{{ redactor.first_name }}</td>
           <td>{{ redactor.last_name }}</td>
