@@ -13,6 +13,17 @@
   </a>
   <p>Topic: ({{ newspaper.topic.name }})</p>
 
+  {% csrf_token %}
+  {% if user in newspaper.redactors.all %}
+    <a href="{% url 'news:newspaper-update' pk=newspaper.id %}" class="btn btn-danger link-to-page">
+      Delete me from this newspaper
+    </a>
+  {% else %}
+    <a href="{% url 'news:newspaper-update' pk=newspaper.id %}" class="btn btn-success link-to-page">
+      Assign me to this newspaper
+    </a>
+  {% endif %}
+
   <h1>Redactor</h1>
   <hr>
   <ul>

@@ -1,12 +1,14 @@
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import QuerySet
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views import View, generic
+from django.contrib.auth.models import User
 
-from news.forms import TopicSearchForm, NewspaperSearchForm, RedactorCreationForm, RedactorUpdateForm, NewspaperForm
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views import generic
+
+from news.forms import TopicSearchForm, NewspaperSearchForm, RedactorCreationForm, RedactorUpdateForm, NewspaperForm, \
+    UserCreateForm
 from news.models import Topic, Redactor, Newspaper
 
 
@@ -29,6 +31,16 @@ def index(request):
     }
 
     return render(request, "news/index.html", context=context)
+
+
+class UserCreateView(generic.CreateView):
+    model = Redactor
+    form_class = UserCreateForm
+    template_name = "registration/register_user.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return redirect("news:index")
 
 
 class TopicListView(LoginRequiredMixin, generic.ListView):

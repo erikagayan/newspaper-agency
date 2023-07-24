@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import (
     index,
+    UserCreateView,
     TopicListView,
     TopicCreateView,
     TopicUpdateView,
@@ -20,6 +21,7 @@ from .views import (
 
 urlpatterns = [
     path("", index, name="index"),
+    path("register_user/", UserCreateView.as_view(), name="register_user"),
     path(
         "topics/",
         TopicListView.as_view(),

@@ -1,8 +1,16 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 from news.models import Redactor, Newspaper
+
+
+class UserCreateForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = Redactor
+        fields = UserCreationForm.Meta.fields + ("email", "first_name", "last_name", "year_of_experience")
 
 
 class TopicSearchForm(forms.Form):
