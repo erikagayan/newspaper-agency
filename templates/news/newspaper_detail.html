@@ -29,6 +29,7 @@
   <ul>
     {% for redactor in newspaper.redactors.all %}
       <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }}; {{ newspaper.published_date }})</li>
+      <p>{{ newspaper.content }}</p>
     {% endfor %}
   </ul>
 {% endblock %}
