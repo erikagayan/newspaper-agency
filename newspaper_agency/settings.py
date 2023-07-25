@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-f_)(it3o6!en_!
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "newspaper-agency1.onrender.com"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
