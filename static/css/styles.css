@@ -1,0 +1,16 @@
+.login-button {
+  width: 85px;
+  height: 40px;
+  text-align: center;
+}
+
+.register-button {
+  margin: 5px;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+}
+
+.margin-for-login {
+  margin: 5px;
+}
