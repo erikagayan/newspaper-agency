@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from decouple import config
 from dotenv import load_dotenv
 
 
@@ -68,8 +69,12 @@ WSGI_APPLICATION = "newspaper_agency.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": ""
     }
 }
 
