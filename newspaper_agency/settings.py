@@ -70,8 +70,8 @@ WSGI_APPLICATION = "newspaper_agency.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
+        "NAME": "vsurnexw",
+        "USER": "vsurnexw",
         "PASSWORD": config("DB_PASSWORD"),
         "HOST": config("DB_HOST"),
         "PORT": ""
