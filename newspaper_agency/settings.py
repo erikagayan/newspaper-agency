@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-f_)(it3o6!en_!)dgetr*^h11bku7exjg=rd&50do^*%p$@tta")
 
@@ -70,10 +69,10 @@ WSGI_APPLICATION = "newspaper_agency.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "vsurnexw",
-        "USER": "vsurnexw",
-        "PASSWORD": "6h9RL31WdvqSNEpaR7FcwodKu1NfYu6F",
-        "HOST": "balarama.db.elephantsql.com",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
         "PORT": ""
     }
 }
