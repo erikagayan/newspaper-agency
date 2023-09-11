@@ -72,8 +72,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "vsurnexw",
         "USER": "vsurnexw",
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
+        "PASSWORD": "6h9RL31WdvqSNEpaR7FcwodKu1NfYu6F",
+        "HOST": "balarama.db.elephantsql.com",
         "PORT": ""
     }
 }
